@@ -53,6 +53,8 @@ class Directory extends React.Component {
               key={elem.id}
               title={elem.title}
               imageUrl={elem.imageUrl}
+              size={elem.size}
+              linkUrl={elem.linkUrl}
             ></MenuItem>
           );
         })}
