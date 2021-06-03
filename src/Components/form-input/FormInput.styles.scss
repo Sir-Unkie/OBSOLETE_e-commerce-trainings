@@ -11,8 +11,10 @@ $main-color: black;
 .group {
   position: relative;
   margin: 45px 0;
+  width: 100%;
 
   .form-input {
+    box-sizing: border-box;
     background: none;
     background-color: white;
     color: $sub-color;

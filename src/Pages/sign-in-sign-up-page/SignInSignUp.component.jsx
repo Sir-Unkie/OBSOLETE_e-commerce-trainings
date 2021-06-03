@@ -5,7 +5,6 @@ import './SignInSignUp.style.scss';
 const SignInSignUp = () => {
   return (
     <div className='sign-in-and-sign-up'>
-      SIGN IN
       <SignIn></SignIn>
     </div>
   );
