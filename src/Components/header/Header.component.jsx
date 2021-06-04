@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.style.scss';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { auth } from '../../firebase/firebase.utils';
 
@@ -15,16 +15,16 @@ const Header = props => {
         <Logo className='logo'></Logo>
       </Link>
       <div className='options'>
-        <Link to='/shop' className='option'>
+        <NavLink activeClassName='selected' to='/shop' className='option'>
           SHOP
-        </Link>
-        <Link to='/' className='option'>
+        </NavLink>
+        <NavLink activeClassName='selected' exact to='/' className='option'>
           CONTACT
-        </Link>
+        </NavLink>
         {!props.currentUser ? (
-          <Link to='/signin' className='option'>
+          <NavLink activeClassName='selected' to='/signin' className='option'>
             SIGN IN
-          </Link>
+          </NavLink>
         ) : (
           <div className='option' onClick={signOutHandler}>
             SIGN OUT

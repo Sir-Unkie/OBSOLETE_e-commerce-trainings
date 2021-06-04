@@ -21,4 +21,22 @@ provider.setCustomParameters({
   login_hint: 'user@example.com',
 });
 
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  if (!userAuth) return;
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+  const snapshot = await userRef.get();
+  if (!snapshot.exists) {
+    try {
+      await userRef.set({
+        displayName: userAuth.displayName,
+        email: userAuth.email,
+        createdAt: new Date(),
+      });
+    } catch (error) {
+      console.log('error: ', error.message);
+    }
+  }
+  return userRef;
+};
+
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
