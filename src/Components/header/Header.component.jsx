@@ -3,6 +3,9 @@ import './Header.style.scss';
 import { Link, NavLink } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { auth } from '../../firebase/firebase.utils';
+import { connect } from 'react-redux';
+import CartIcon from '../cartIcon/cartIcon.component';
+import CartDropdown from '../cartDropdown/CartDropdown.component';
 
 const Header = props => {
   const signOutHandler = () => {
@@ -30,9 +33,16 @@ const Header = props => {
             SIGN OUT
           </div>
         )}
+        <CartIcon></CartIcon>
       </div>
+      {!props.cartHidden && <CartDropdown />}
     </div>
   );
 };
 
-export default Header;
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser,
+  cartHidden: state.cart.hidden,
+});
+
+export default connect(mapStateToProps)(Header);
