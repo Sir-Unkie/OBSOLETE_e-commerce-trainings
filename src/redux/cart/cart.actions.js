@@ -9,4 +9,14 @@ export const addItem = item => ({
   payload: item,
 });
 
+export const removeItem = item => ({
+  type: CartActionsTypes.REMOVE_ITEM,
+  payload: item,
+});
+
+export const decreaseItem = item => ({
+  type: CartActionsTypes.DECREASE_ITEM,
+  payload: item,
+});
+
 export default toggleCartHidden;
