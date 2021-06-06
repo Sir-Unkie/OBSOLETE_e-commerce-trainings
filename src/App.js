@@ -9,6 +9,8 @@ import SignInSignUp from './Pages/sign-in-sign-up-page/SignInSignUp.component';
 import { auth } from './firebase/firebase.utils';
 import { createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/user.actions';
+import { selectCurrentUser } from './redux/user/user.selectors';
+import CheckoutPage from './Pages/checkout/CheckoutPage.component';
 // import { render } from '@testing-library/react';
 
 class App extends React.Component {
@@ -48,6 +50,7 @@ class App extends React.Component {
             }
           />
           <Route path='/shop' component={ShopPage} />
+          <Route exact patch='/checkout' component={CheckoutPage} />
           <Route exact path='/' component={HomePage} />
         </Switch>
       </Fragment>
@@ -60,7 +63,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  currentUser: state.user.currentUser,
+  currentUser: selectCurrentUser(state),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
