@@ -16,6 +16,7 @@ const CollectionPreview = props => {
                 name={item.name}
                 imageUrl={item.imageUrl}
                 price={item.price}
+                item={item}
               ></CollectionItem>
             );
           })}
