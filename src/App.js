@@ -50,7 +50,7 @@ class App extends React.Component {
             }
           />
           <Route path='/shop' component={ShopPage} />
-          <Route exact patch='/checkout' component={CheckoutPage} />
+          <Route path='/checkout' component={CheckoutPage} />
           <Route exact path='/' component={HomePage} />
         </Switch>
       </Fragment>
