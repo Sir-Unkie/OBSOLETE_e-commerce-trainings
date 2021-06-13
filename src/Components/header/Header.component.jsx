@@ -1,5 +1,5 @@
 import React from 'react';
-import './Header.style.scss';
+import './Header.styles.scss';
 import { Link, NavLink } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { auth } from '../../firebase/firebase.utils';
@@ -24,7 +24,7 @@ const Header = props => {
           SHOP
         </NavLink>
         <NavLink activeClassName='selected' exact to='/' className='option'>
-          CONTACT
+          HOME
         </NavLink>
         {!props.currentUser ? (
           <NavLink activeClassName='selected' to='/signin' className='option'>
