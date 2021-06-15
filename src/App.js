@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import HomePage from './Pages/homepage.component';
@@ -13,50 +13,48 @@ import { selectCurrentUser } from './redux/user/user.selectors';
 import CheckoutPage from './Pages/checkout/CheckoutPage.component';
 // import { render } from '@testing-library/react';
 
-class App extends React.Component {
-  unsubscribeFromAuth = null;
-  componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
+const App = ({ setCurrentUser, currentUser }) => {
+  useEffect(() => {
+    let unsubscribeFromAuth = null;
+    unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
       if (user) {
         const userRef = await createUserProfileDocument(user);
         userRef.onSnapshot(snapshot => {
-          this.props.setCurrentUser({
+          setCurrentUser({
             id: snapshot.id,
             ...snapshot.data(),
           });
         });
       }
-      this.props.setCurrentUser(user);
+      setCurrentUser(user);
     });
-  }
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
+    return () => {
+      unsubscribeFromAuth();
+    };
+  }, [setCurrentUser]);
 
-  render() {
-    return (
-      <Fragment>
-        <Header />
-        <Switch>
-          <Route
-            exact
-            path='/signin'
-            render={() =>
-              this.props.currentUser ? (
-                <Redirect exact to='/'></Redirect>
-              ) : (
-                <SignInSignUp></SignInSignUp>
-              )
-            }
-          />
-          <Route path='/shop' component={ShopPage} />
-          <Route path='/checkout' component={CheckoutPage} />
-          <Route exact path='/' component={HomePage} />
-        </Switch>
-      </Fragment>
-    );
-  }
-}
+  return (
+    <Fragment>
+      <Header />
+      <Switch>
+        <Route
+          exact
+          path='/signin'
+          render={() =>
+            currentUser ? (
+              <Redirect exact to='/'></Redirect>
+            ) : (
+              <SignInSignUp></SignInSignUp>
+            )
+          }
+        />
+        <Route path='/shop' component={ShopPage} />
+        <Route path='/checkout' component={CheckoutPage} />
+        <Route exact path='/' component={HomePage} />
+      </Switch>
+    </Fragment>
+  );
+};
 
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user)),
