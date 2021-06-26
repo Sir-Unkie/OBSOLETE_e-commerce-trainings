@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Route } from 'react-router-dom';
-import CollectionPage from '../collection/CollectionPage.component';
+// import CollectionPage from '../collection/CollectionPage.component';
 import { fetchCollectionsStartAsync } from '../../redux/shop/shop.actions.js';
 import { connect } from 'react-redux';
 import {
@@ -9,8 +9,15 @@ import {
 } from '../../redux/shop/shop.selector';
 import './shop.styles.scss';
 
-import CollectionsOverview from '../../Components/collection-overview/CollectionsOverview.component';
+// import CollectionsOverview from '../../Components/collection-overview/CollectionsOverview.component';
 import Spinner from '../../Components/Spinner/Spinner';
+
+const CollectionsOverview = lazy(() =>
+  import('../../Components/collection-overview/CollectionsOverview.component')
+);
+const CollectionPage = lazy(() =>
+  import('../collection/CollectionPage.component')
+);
 
 class ShopPage extends React.Component {
   unsubscribeFromSnapshot = null;
@@ -25,15 +32,17 @@ class ShopPage extends React.Component {
           <Spinner></Spinner>
         ) : (
           <React.Fragment>
-            <Route
-              exact
-              path={`${this.props.match.path}`}
-              component={CollectionsOverview}
-            />
-            <Route
-              path={`${this.props.match.path}/:collectionId`}
-              component={CollectionPage}
-            />
+            <Suspense fallback={<Spinner></Spinner>}>
+              <Route
+                exact
+                path={`${this.props.match.path}`}
+                component={CollectionsOverview}
+              />
+              <Route
+                path={`${this.props.match.path}/:collectionId`}
+                component={CollectionPage}
+              />
+            </Suspense>
           </React.Fragment>
         )}
       </div>
