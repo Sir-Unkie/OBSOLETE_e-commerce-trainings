@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/Pages/shop/shop.styles.scss"],"names":[],"mappings":"AAAA,WACE,UAAA,CACA,qBAAA","file":"8.a208e136.chunk.css","sourcesContent":[".shop-page {\r\n  width: 100%;\r\n  box-sizing: border-box;\r\n}\r\n"]}
