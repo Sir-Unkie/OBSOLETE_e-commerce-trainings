@@ -2,7 +2,10 @@
 
 ![Cover photo](https://github.com/Sir-Unkie/e-commerce-trainings/blob/master/READMEfiles/cover.png)
 This is a project for a fictional e-commerce company.
-The website allows to browse through different types of products. All the products data is fetched from the firestore cloud storage. The website provides customers with cart functionality and stripe payments.
+The website allows to browse through different types of products. All the products data is fetched from the firestore cloud storage and then managed with the help of redux. 
+The website provides customers with cart functionality and stripe payments. 
+The React Router is responsible for the routing of the project. 
+React lazy loading is implemented for the optimal JS bundling.
 
 
 ## The live version of the website is available here: [Live Website](https://e-commerce-test-website.netlify.app/)
@@ -15,6 +18,7 @@ The website allows to browse through different types of products. All the produc
 - SCSS modules
 - Firebase (authentication and cloud databse)
 - Stripe payments
+- React lazyloading
 
 # Main Features
 
@@ -24,11 +28,11 @@ The website allows to browse through different types of products. All the produc
 
 ## Google and email/password authentication
 
-![Authentication](https://s9.gifyu.com/images/Mygif2.gif)
+![Authentication](https://github.com/Sir-Unkie/e-commerce-trainings/blob/master/READMEfiles/Ecom2.gif)
 
 ## Responsive design
 
-![Responsive design](https://github.com/Sir-Unkie/Tavrida-VCB-Configurator/blob/master/GIF/Mygif5.gif)
+![Responsive design](https://github.com/Sir-Unkie/e-commerce-trainings/blob/master/READMEfiles/Ecom3.gif)
 
 # Getting Started with Create React App
 
